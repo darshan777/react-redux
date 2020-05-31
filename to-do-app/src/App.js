@@ -3,6 +3,7 @@ import './App.css';
 import Table from './table-component/table'
 import Form from './form-component/form'
 import Header from './header-component/header'
+import { Provider } from 'react-redux';
 
 function App() {
   
