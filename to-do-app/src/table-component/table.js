@@ -5,6 +5,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableBody from '@material-ui/core/TableBody';
 import { Button } from "@material-ui/core";
+import Header from "../header-component/header"
 
 
 
@@ -15,60 +16,58 @@ class table extends Component{
         this.state = {
             tasks :[
                 {
+                    TaskID:1,
                     Task: "Complete React App",
                     Description:"Complete the React Applicatiion  and get a brief understanding of its features"
                 },
                 {
+                    TaskID:2,
                     Task: "Complete React App",
                     Description:"Complete the React Applicatiion  and get a brief understanding of its features"
                 },
                 {
+                    TaskID:3,
                     Task: "Complete React App",
                     Description:"Complete the React Applicatiion  and get a brief understanding of its features"
                 }
             ]
         }
+       
     }
-    deleteTask = function(event){
-        let name = event.target.id.value
-        console.log(name);
+    handleDelete = function(event){
+        
     }
+    handelUpdate = (task) =>{
+        
+        this.setState(()=>{
+            tasks : this.state.tasks.splice(task.TaskID,1);
+        });
+        console.log(this.state.tasks.length);
+        }
+    
 
     
 
     render(){
         return (
             <div> 
-                <TableContainer>
-                    <TableHead>
-                        <TableRow>
-                        
-                            <TableCell>Task ID</TableCell>
-                            <TableCell>Description</TableCell>
-                            <TableCell></TableCell>
-                            <TableCell></TableCell>
-                            
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
+                
                         
                             {
                                 
                                 this.state.tasks.map((task)=>{
                                 return (
-                                <TableRow>
-                                <TableCell>{task.Task}</TableCell>
-                                <TableCell>{task.Description}</TableCell>
-                                <TableCell><Button variant="contained" color="primary" id={task.Task} onClick={this.deleteTask}> Delete </Button></TableCell>
-                                
-                                </TableRow>
+                                    <div>
+                                    <Header task ={task.Task} taskDescription={task.Description} onUpdate={()=>this.handelUpdate(task)} onDelete={this.handleDelete}/>
+                                    <br />
+                                    </div>
+                                   
                                 );
                                 })
                                 
                             }
                         
-                    </TableBody>
-                </TableContainer>
+                    
             </div>
         );
     }

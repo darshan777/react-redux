@@ -10,6 +10,7 @@ function App() {
     <div className="App" style={{alignContent:"center"}}>
       <h1>Hey Darshan Welcome back!!</h1>
       <Table />
+      <Header />
     </div>
   );
 }

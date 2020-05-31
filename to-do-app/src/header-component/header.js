@@ -1,39 +1,35 @@
 import React, {Component} from 'react'
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import TypoGraphy from '@material-ui/core/Typography'
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import { Container } from '@material-ui/core';
+
+
 
 
 class header extends Component{
+    constructor(props){
+        super(props)
+       
+        
+    }
+    
     render(){
         return (
-            
-                <List component="nav">
-            <ListItem component="div">
-                <ListItemText inset>
-                    <TypoGraphy color="inherit" variant="title">
-                        Home
-               </TypoGraphy>
-                </ListItemText>
+            <Container fixed>
+                <Card  style = {{width:550, height:200, }}>
+                <CardContent style={{textAlign:"left"}}>
+                    <h3>{this.props.task}</h3>
+                    <h4>{this.props.taskDescription}</h4>
+                    <Button onClick={this.props.onUpdate}>Completed</Button>
+                </CardContent>
+                </Card>
 
 
-                <ListItemText inset>
-                    <TypoGraphy color="inherit" variant="title">
-                        Posts
-               </TypoGraphy>
-                </ListItemText>
-
-
-                <ListItemText inset>
-                    <TypoGraphy color="inherit" variant="title">
-                        Contact
-               </TypoGraphy>
-                </ListItemText>
-            </ListItem >
-
-        </List>
-
+                </Container>
+                
             
         );
     }
