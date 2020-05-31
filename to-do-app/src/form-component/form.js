@@ -4,51 +4,57 @@ import {
     InputLabel,
     Input,
     Button,
-    TextField,
-    Radio,
-    RadioGroup, FormLabel, FormControlLabel
+    
   } from "@material-ui/core";
-  import {
-    KeyboardDatePicker
-  } from '@material-ui/pickers';
+  import Header from '../header-component/header'
+
+  
 
 
 
 
 
 class form extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            Task: "Enter your Rask",
+            Description:" Descripe your task"
+
+        }
+    }
+    handleChange = (event)=>{
+        let key = event.target.name;
+        let value = event.target.value;
+        this.setState({
+           [key] : value,
+
+        });
+        
+    }
+    handleSubmit = (event)=>{
+        
+    }
+
+    
     render(){
         
-        let value = 'low';
-        let setValue = (val)=>{
-            value = val;
-        }
-        
-
-            const handleChange = (event) => {
-                setValue(event.target.value);
-                console.log(value)
-            };
+       
 
         return (
             <div style={{alignContent:"center", display:"flex", padding:20}}>
-                <form>
+                <form >
+                    <FormControl margin="normal" fullWidth>
+                    <InputLabel htmlFor="description" >Task</InputLabel>
+                    <Input name="Task" type="text" onChange={this.handleChange} />
+                    </FormControl>
                     <FormControl margin="normal" fullWidth>
                     <InputLabel htmlFor="description">Description</InputLabel>
-                    <Input id="description" type="textarea" />
+                    <Input name="Description" type="textarea"  onChange={this.handleChange}/>
                     </FormControl>
-                    <FormControl component="fieldset">
-                    <FormLabel component="legend">Priority</FormLabel>
-                    <RadioGroup aria-label="gender" name="priority" value={value} onChange={handleChange}>
-                        <FormControlLabel value="high" control={<Radio />} label="High" />
-                        <FormControlLabel value="medium" control={<Radio />} label="Medium" />
-                        <FormControlLabel value="low" control={<Radio />} label="low" />
-                        
-                    </RadioGroup>
-                    </FormControl>
-                    
-                            
-                        
+                    <Button variant="contained" color="primary" onClick={this.handleSubmit} >
+                         Submit
+                    </Button>
                 </form>
             </div>
         );
