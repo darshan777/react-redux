@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { Connect } from 'react-redux';
+import { CREATE_TODO } from '../store/action'
 import {
     FormControl,
     InputLabel,
@@ -15,7 +17,7 @@ import {
 
 
 class form extends Component{
-    constructor(props){
+    constructor(todos, onClickSubmit, props){
         super(props);
         this.state = {
             Task: "Enter your Rask",
@@ -52,7 +54,7 @@ class form extends Component{
                     <InputLabel htmlFor="description">Description</InputLabel>
                     <Input name="Description" type="textarea"  onChange={this.handleChange}/>
                     </FormControl>
-                    <Button variant="contained" color="primary" onClick={this.handleSubmit} >
+                    <Button variant="contained" color="primary" onClick={CREATE_TODO(this.state)} >
                          Submit
                     </Button>
                 </form>
@@ -61,5 +63,12 @@ class form extends Component{
 
     }
 }
+const mapStateToProps = state =>({
+    todos : state.todos,
+});
 
-export default form;
+const mapDispatchToProps = dispatch =>({
+    onClickSubmit : text=> dispatch(CREATE_TODO(text)),
+});
+
+export default Connect(mapStateToProps, mapDispatchToProps)(form);
